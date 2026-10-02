@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Learning Dashboard — Basit Academy</title>
+  <meta name="description" content="Student learning workspace for Facebook and TikTok monetization, batch lessons, VIP account library, and prompt engineering tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      margin-top: 30px;
+    }
+    @media (max-width: 900px) {
+      .dash-grid { grid-template-columns: 1fr; }
+    }
+    .dash-sidebar {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      height: fit-content;
+      box-shadow: var(--shadow-xs);
+    }
+    .student-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .student-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #fff;
+    }
+    .dash-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .dash-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 13.5px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .dash-nav-btn:hover, .dash-nav-btn.active {
+      background: var(--bg);
+      color: var(--indigo);
+      font-weight: 700;
+    }
+    .dash-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-xs);
+    }
+    .module-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+    .module-item:hover {
+      background: #FFFFFF;
+      border-color: var(--indigo);
+      box-shadow: var(--shadow-xs);
+    }
+    .module-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(79, 70, 229, 0.1);
+      color: var(--indigo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="logo">
+      <div class="logo-avatar-wrap">
+        <img src="img/logo.png?v=3" alt="Basit Academy" onerror="this.src='img/basit.jpg?v=3'">
+      </div>
+      <div class="logo-brand">
+        <span>Basit Academy</span>
+        <em>Student Dashboard</em>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="prompt-book.html">Prompt Book</a>
+      <a href="master-prompts.html">Master Prompts</a>
+      <a href="accounts.html">Viral Accounts</a>
+      <a href="extractor.html" class="nav-btn-extractor">⚡ AI Extractor</a>
+      <a href="javascript:void(0)" class="nav-login" id="btnLogoutNav">Logout</a>
+    </div>
+    <button class="nav-toggle-btn" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobileDrawer" class="mobile-drawer">
+  <div class="mobile-drawer-links">
+    <a href="index.html" class="mobile-nav-link">
+      <span>🏠 Home</span>
+    </a>
+    <a href="prompt-book.html" class="mobile-nav-link">
+      <span>📖 AI Prompt Book</span>
+      <span class="badge-tag">970+</span>
+    </a>
+    <a href="master-prompts.html" class="mobile-nav-link">
+      <span>💎 Master Prompts</span>
+      <span class="badge-tag">98 Systems</span>
+    </a>
+    <a href="accounts.html" class="mobile-nav-link">
+      <span>🔥 Viral Accounts</span>
+      <span class="badge-tag">2,080+</span>
+    </a>
+    <a href="extractor.html" class="mobile-nav-link">
+      <span>⚡ AI Prompt Extractor</span>
+      <span class="badge-tag">Pro</span>
+    </a>
+  </div>
+  <div class="mobile-drawer-cta">
+    <a href="javascript:void(0)" id="btnLogoutDrawer" class="btn-ghost" style="width:100%; justify-content:center; color:var(--rose)">🚪 Log Out</a>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:30px; padding-bottom:60px">
+  <div class="dash-grid">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="student-badge">
+        <div class="student-avatar" id="dashAvatar">S</div>
+        <div>
+          <b id="dashName" style="color:var(--text); font-size:15px; display:block">Student Member</b>
+          <span style="font-family:var(--font-mono); font-size:11px; color:var(--emerald); font-weight:700">BATCH 2026 ACTIVE</span>
+        </div>
+      </div>
+
+      <div class="dash-nav">
+        <a class="dash-nav-btn active" href="learn.html">📚 Recorded Lessons</a>
+        <a class="dash-nav-btn" href="accounts.html">🔥 Viral Accounts (2,082+)</a>
+        <a class="dash-nav-btn" href="master-prompts.html">💎 Master Prompts (98)</a>
+        <a class="dash-nav-btn" href="prompt-book.html">📖 Prompt Book (830+)</a>
+        <a class="dash-nav-btn" href="extractor.html">⚡ AI Extractor Studio</a>
+        <a class="dash-nav-btn btn-support-modal" href="javascript:void(0)">💬 WhatsApp Support Desk</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <div class="dash-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px">
+          <div>
+            <h2 style="font-family:var(--font-display); font-size:24px; font-weight:800; color:var(--text)">Video Training & Guidance</h2>
+            <p style="font-size:14px; color:var(--text-muted)">Masterclass on Facebook and TikTok monetization from Rajanpur, Pakistan.</p>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:12px; font-weight:700; padding:6px 12px; background:rgba(5, 150, 105, 0.1); border:1px solid rgba(5, 150, 105, 0.3); color:var(--emerald); border-radius:var(--radius-full)">● 100% Free Access</span>
+        </div>
+
+        <!-- Recorded Lessons Coming Soon Notice Box -->
+        <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-md); padding:32px 24px; text-align:center; margin-top:10px">
+          <div style="font-size:42px; margin-bottom:12px">🎬 ⏳</div>
+          <h3 style="font-family:var(--font-display); font-size:20px; font-weight:800; color:var(--text-heading); margin-bottom:10px">Recorded Lessons Bohat Jald Available Honge</h3>
+          <p style="font-size:15px; color:var(--text-muted); max-width:580px; margin:0 auto 24px; line-height:1.6">
+            Recorded lessons bohat jald available honge, jismein complete detailed guidance milegi. Tamam modules step-by-step upload kiye ja rahe hain.
+          </p>
+          <div style="display:inline-flex; gap:12px; flex-wrap:wrap; justify-content:center">
+            <a href="javascript:void(0)" class="btn-primary btn-support-modal" style="padding:10px 22px; font-size:13.5px">Contact for Support 💬</a>
+            <a href="master-prompts.html" class="btn-ghost" style="padding:10px 20px; font-size:13.5px">Explore Master Prompts →</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <div class="logo-avatar-wrap" style="width:32px; height:32px">
+            <img src="img/logo.png?v=3" alt="Basit Academy" onerror="this.src='img/basit.jpg?v=3'">
+          </div>
+          Basit Academy
+        </div>
+        <p class="foot-about">Learn. Create. Grow. Monetize. Facebook and TikTok monetization training for creators in Rajanpur, Pakistan.</p>
+      </div>
+      <div>
+        <div class="foot-h">Direct Hubs</div>
+        <ul class="foot-links">
+          <li><a href="accounts.html">Viral Accounts</a></li>
+          <li><a href="master-prompts.html">Master Prompts</a></li>
+          <li><a href="prompt-book.html">Prompt Book</a></li>
+          <li><a href="extractor.html">AI Video Extractor</a></li>
+          <li><a href="login.html">Student Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-h">Follow & Connect</div>
+        <ul class="foot-links">
+          <li><a href="https://www.facebook.com/profile.php?id=100094701926869" target="_blank" rel="noopener">Facebook Profile</a></li>
+          <li><a href="javascript:void(0)" class="btn-support-modal">WhatsApp Support</a></li>
+        </ul>
+        <p style="font-size:12px; color:var(--text-dim); margin-top:12px; line-height:1.5">
+          Recorded channels, videos, and complete guidelines will be provided directly on this website very soon.
+        </p>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Basit Academy. All rights reserved.</span>
+      <span>Rajanpur, Pakistan · 100% Free Creator Education</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/923000000000?text=Assalam%20o%20alaikum%20Basit%20Academy"
+   class="wa-float"
+   target="_blank"
+   rel="noopener"
+   aria-label="Message us on WhatsApp">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.898 9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/>
+  </svg>
+  <span class="wa-float-text">Direct WhatsApp</span>
+</a>
+
+<!-- MOBILE BOTTOM APP DOCK -->
+<nav class="mobile-bottom-bar" aria-label="Mobile Navigation">
+  <a href="index.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">🏠</span>
+    <span>Home</span>
+  </a>
+  <a href="prompt-book.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">📖</span>
+    <span>Prompts</span>
+  </a>
+  <a href="master-prompts.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">💎</span>
+    <span>Master</span>
+  </a>
+  <a href="accounts.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">🔥</span>
+    <span>Accounts</span>
+  </a>
+  <a href="extractor.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">⚡</span>
+    <span>Extract</span>
+  </a>
+  <a href="learn.html" class="mobile-tab-item active">
+    <span class="mobile-tab-icon">👤</span>
+    <span>Portal</span>
+  </a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  const student = JSON.parse(localStorage.getItem('basit_student') || 'null');
+  if (student && student.name) {
+    document.getElementById('dashName').textContent = student.name;
+    document.getElementById('dashAvatar').textContent = student.name[0].toUpperCase();
+  }
+
+  function doLogout() {
+    if (confirm('Are you sure you want to log out?')) {
+      localStorage.removeItem('basit_student');
+      window.location.href = 'index.html';
+    }
+  }
+
+  const btnLogoutNav = document.getElementById('btnLogoutNav');
+  if (btnLogoutNav) btnLogoutNav.onclick = doLogout;
+
+  const btnLogoutDrawer = document.getElementById('btnLogoutDrawer');
+  if (btnLogoutDrawer) btnLogoutDrawer.onclick = doLogout;
+</script>
+
+</body>
+</html>

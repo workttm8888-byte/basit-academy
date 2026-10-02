@@ -1,0 +1,13 @@
+{
+  "name": "viral-hub-pro",
+  "version": "1.0.0",
+  "description": "Viral Accounts Library, Master Prompts Book & AI Video Prompt Extractor",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

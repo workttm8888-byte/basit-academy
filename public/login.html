@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal Authentication — Basit Academy</title>
+  <meta name="description" content="Sign in or create your student account at Basit Academy to access viral accounts intelligence, master AI prompts systems, and training materials.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --bg-subtle: #F1F5F9;
+      --surface: #FFFFFF;
+      --border: #E2E8F0;
+      --border-focus: #10B981;
+      --text: #0F172A;
+      --text-muted: #475569;
+      --text-dim: #64748B;
+      --emerald: #059669;
+      --mint: #10B981;
+      --navy: #1E3A8A;
+      --royal: #2563EB;
+      --blue: #3B82F6;
+      --purple: #7C3AED;
+      --violet: #9333EA;
+      --grad-primary: linear-gradient(135deg, #059669 0%, #10B981 25%, #6366F1 65%, #7C3AED 100%);
+      --grad-glow: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+      --grad-text: linear-gradient(135deg, #059669 0%, #0284C7 35%, #7C3AED 100%);
+      --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .auth-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    @media (max-width: 900px) {
+      .auth-container { grid-template-columns: 1fr; }
+      .auth-left { display: none; }
+    }
+
+    /* Left Hero Panel */
+    .auth-left {
+      background: radial-gradient(circle at 85% 15%, rgba(37, 99, 235, 0.14) 0%, transparent 60%),
+                  radial-gradient(circle at 15% 85%, rgba(124, 58, 237, 0.14) 0%, transparent 60%),
+                  #FFFFFF;
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      padding: 2.5px;
+      background: var(--grad-primary);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    }
+
+    .brand-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--royal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .auth-hero-content h1 {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .auth-hero-content h1 .grad-highlight {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .auth-hero-content p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .perks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .perk-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--grad-glow);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--royal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .auth-left-footer {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Right Form Area */
+    .auth-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px;
+      background: var(--bg);
+    }
+
+    .auth-box {
+      width: 100%;
+      max-width: 460px;
+      background: #FFFFFF;
+      padding: 38px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 40px rgba(30, 58, 138, 0.08);
+      position: relative;
+    }
+
+    .auth-box-header {
+      margin-bottom: 26px;
+    }
+
+    .auth-box-header h2 {
+      font-family: var(--font-display);
+      font-size: 27px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .auth-box-header h2 .grad-title {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .auth-box-header p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .google-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 13.5px 18px;
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14.5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .google-btn:hover {
+      background: var(--bg-subtle);
+      border-color: var(--royal);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+    }
+
+    .google-btn svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 22px;
+      color: var(--text-dim);
+      font-size: 11.5px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .divider span { padding: 0 12px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: var(--font-body);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--royal);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--grad-primary);
+      border: none;
+      border-radius: 12px;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-top: 10px;
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-submit:hover {
+      box-shadow: 0 8px 28px rgba(124, 58, 237, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .auth-toggle {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    .auth-toggle a {
+      color: var(--royal);
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+
+    .auth-toggle a:hover { text-decoration: underline; color: var(--purple); }
+
+    /* Modal Sheet for Google Onboarding / Success */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 460px;
+      text-align: center;
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.2);
+      animation: modalSlideUp 0.3s ease;
+    }
+
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--grad-glow);
+      color: var(--royal);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 18px auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="auth-container">
+  <!-- Left Side Hero -->
+  <div class="auth-left">
+    <a href="index.html" class="brand-header">
+      <div class="brand-avatar">
+        <img src="img/logo.png?v=3" alt="Basit Academy" onerror="this.src='img/basit.jpg?v=3'">
+      </div>
+      <div>
+        <div class="brand-title">Basit Academy</div>
+        <div class="brand-sub">Creator Studio Portal</div>
+      </div>
+    </a>
+
+    <div class="auth-hero-content">
+      <h1>Turn your content into <span class="grad-highlight">real income.</span></h1>
+      <p>Log in or create a student account to unlock VIP verified viral accounts, full Master AI video blueprints, and daily training systems.</p>
+      
+      <div class="perks-list">
+        <div class="perk-item">
+          <div class="perk-icon">✓</div>
+          <span>Instant access to 2,082+ Viral Accounts Database</span>
+        </div>
+        <div class="perk-item">
+          <div class="perk-icon">✓</div>
+          <span>98+ Master AI Video Systems for Midjourney & Kling</span>
+        </div>
+        <div class="perk-item">
+          <div class="perk-icon">✓</div>
+          <span>AI Video Prompt Extractor with 1-Click Blueprints</span>
+        </div>
+        <div class="perk-item">
+          <div class="perk-icon">✓</div>
+          <span>Direct WhatsApp support from Rajanpur, Pakistan</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-left-footer">
+      © 2026 Basit Academy · Rajanpur, Pakistan · 100% Free Creator Education
+    </div>
+  </div>
+
+  <!-- Right Side Authentication Form -->
+  <div class="auth-right">
+    <div class="auth-box">
+      <div class="auth-box-header">
+        <h2 id="formTitle"><span class="grad-title">Student Portal</span></h2>
+        <p id="formSub">Access your creator studio and learning workspace.</p>
+      </div>
+
+      <!-- Google Sign In Button -->
+      <button type="button" class="google-btn" id="btnGoogleAuth">
+        <svg viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+        </svg>
+        <span>Continue with Google</span>
+      </button>
+
+      <div class="divider">
+        <span>OR CONTINUE WITH DETAILS</span>
+      </div>
+
+      <form id="authForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="userFirstName">First Name</label>
+            <input type="text" id="userFirstName" class="form-input" placeholder="e.g. Muhammad" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="userLastName">Second Name (Last Name)</label>
+            <input type="text" id="userLastName" class="form-input" placeholder="e.g. Basit" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="userEmail">Email / Gmail Address</label>
+          <input type="email" id="userEmail" class="form-input" placeholder="name@gmail.com" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="userWhatsapp">WhatsApp Number (with Country Code)</label>
+          <input type="tel" id="userWhatsapp" class="form-input" placeholder="+92 3XX XXXXXXX" required />
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSubmitForm">Sign In & Access Dashboard →</button>
+      </form>
+
+      <div class="auth-toggle">
+        <span id="toggleText">Need instant guidance?</span>
+        <a href="https://wa.me/923279497232?text=Assalam%20o%20alaikum%20Basit%20Academy%2C%20mujhe%20portal%20guidance%20chahiye." target="_blank" rel="noopener">WhatsApp Support Desk</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Google Account Selection / Fast Onboarding Modal -->
+<div class="modal-overlay" id="googlePromptModal">
+  <div class="modal-box" style="text-align:left">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px">
+      <svg viewBox="0 0 24 24" width="28" height="28">
+        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+        <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+      </svg>
+      <div>
+        <h3 style="font-family:var(--font-display); font-size:18px; font-weight:800; color:var(--text)">Sign in with Google</h3>
+        <p style="font-size:12px; color:var(--text-muted)">Choose your Gmail account for Basit Academy</p>
+      </div>
+    </div>
+
+    <form id="googleQuickForm" style="margin-top:14px">
+      <div class="form-group">
+        <label class="form-label" for="gEmail">Gmail Address</label>
+        <input type="email" id="gEmail" class="form-input" placeholder="yourname@gmail.com" required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="gFirstName">First Name</label>
+          <input type="text" id="gFirstName" class="form-input" placeholder="First Name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="gLastName">Second Name</label>
+          <input type="text" id="gLastName" class="form-input" placeholder="Last Name" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="gWhatsapp">WhatsApp Number</label>
+        <input type="tel" id="gWhatsapp" class="form-input" placeholder="+92 3XX XXXXXXX" required />
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnConfirmGoogle">Continue & Save Profile →</button>
+      <button type="button" class="btn-ghost" style="width:100%; justify-content:center; margin-top:8px; padding:10px; border:none; background:transparent; color:var(--text-muted); cursor:pointer" onclick="closeAuthModal()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<!-- Success Modal Dialog -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-box">
+    <div class="modal-icon">✓</div>
+    <h3 id="modalHead" style="font-family:var(--font-display); font-size:22px; font-weight:800; color:var(--text); margin-bottom:8px">Welcome to Basit Academy!</h3>
+    <p id="modalMsg" style="font-size:14px; color:var(--text-muted); line-height:1.6; margin-bottom:24px">Your student workspace is ready and saved safely.</p>
+    <button type="button" class="btn-submit" id="btnModalRedirect">Go to Learning Dashboard →</button>
+  </div>
+</div>
+
+<script>
+  const authModal = document.getElementById('authModal');
+  const googlePromptModal = document.getElementById('googlePromptModal');
+  const modalHead = document.getElementById('modalHead');
+  const modalMsg = document.getElementById('modalMsg');
+  const btnModalRedirect = document.getElementById('btnModalRedirect');
+
+  function closeAuthModal() {
+    googlePromptModal.style.display = 'none';
+  }
+
+  // Google Flow Trigger
+  document.getElementById('btnGoogleAuth').onclick = () => {
+    googlePromptModal.style.display = 'flex';
+  };
+
+  // Google Quick Form Submit
+  document.getElementById('googleQuickForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('gEmail').value.trim();
+    const fName = document.getElementById('gFirstName').value.trim();
+    const lName = document.getElementById('gLastName').value.trim();
+    const wa = document.getElementById('gWhatsapp').value.trim();
+
+    await registerAndProceed({
+      firstName: fName,
+      lastName: lName,
+      email: email,
+      whatsapp: wa,
+      authProvider: 'google'
+    });
+  };
+
+  // Main Auth Form Submit
+  document.getElementById('authForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('userEmail').value.trim();
+    const fName = document.getElementById('userFirstName').value.trim();
+    const lName = document.getElementById('userLastName').value.trim();
+    const wa = document.getElementById('userWhatsapp').value.trim();
+
+    await registerAndProceed({
+      firstName: fName,
+      lastName: lName,
+      email: email,
+      whatsapp: wa,
+      authProvider: 'email'
+    });
+  };
+
+  // Backend Registration & Storage Helper
+  async function registerAndProceed(data) {
+    try {
+      const res = await fetch('/api/auth/register-student', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const resData = await res.json();
+      const student = resData.student || {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        name: `${data.firstName} ${data.lastName}`.trim(),
+        email: data.email,
+        whatsapp: data.whatsapp,
+        auth: data.authProvider,
+        date: new Date().toISOString()
+      };
+
+      localStorage.setItem('basit_student', JSON.stringify({
+        ...student,
+        name: `${data.firstName} ${data.lastName}`.trim()
+      }));
+
+      googlePromptModal.style.display = 'none';
+      modalHead.textContent = 'Account Verified & Saved!';
+      modalMsg.textContent = `Welcome ${student.name || data.firstName}! Your details (${student.whatsapp || data.whatsapp}) have been safely registered.`;
+      authModal.style.display = 'flex';
+    } catch (err) {
+      // Local fallback in case server offline
+      const student = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        name: `${data.firstName} ${data.lastName}`.trim(),
+        email: data.email,
+        whatsapp: data.whatsapp,
+        auth: data.authProvider,
+        date: new Date().toISOString()
+      };
+      localStorage.setItem('basit_student', JSON.stringify(student));
+      googlePromptModal.style.display = 'none';
+      modalHead.textContent = 'Welcome to Basit Academy!';
+      modalMsg.textContent = `Logged in as ${student.name}.`;
+      authModal.style.display = 'flex';
+    }
+  }
+
+  btnModalRedirect.onclick = () => {
+    window.location.href = 'learn.html';
+  };
+</script>
+
+</body>
+</html>

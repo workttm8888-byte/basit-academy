@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Video Prompt Extractor Studio — Basit Academy</title>
+  <meta name="description" content="Extract complete master AI prompts from any viral TikTok, Reel, or Shorts video link. Get visual generator prompts, motion parameters, and viral script hooks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="logo">
+      <div class="logo-avatar-wrap">
+        <img src="img/logo.png?v=3" alt="Basit Academy" onerror="this.src='img/basit.jpg?v=3'">
+      </div>
+      <div class="logo-brand">
+        <span>Basit Academy</span>
+        <em>AI Creator Studio</em>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="prompt-book.html">Prompt Book</a>
+      <a href="master-prompts.html">Master Prompts</a>
+      <a href="accounts.html">Viral Accounts</a>
+      <a href="extractor.html" class="nav-btn-extractor active">⚡ AI Extractor</a>
+      <a href="login.html" class="nav-login">Student login</a>
+    </div>
+    <button class="nav-toggle-btn" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobileDrawer" class="mobile-drawer">
+  <div class="mobile-drawer-links">
+    <a href="index.html" class="mobile-nav-link">
+      <span>🏠 Home</span>
+    </a>
+    <a href="prompt-book.html" class="mobile-nav-link">
+      <span>📖 AI Prompt Book</span>
+      <span class="badge-tag">970+</span>
+    </a>
+    <a href="master-prompts.html" class="mobile-nav-link">
+      <span>💎 Master Prompts</span>
+      <span class="badge-tag">98 Systems</span>
+    </a>
+    <a href="accounts.html" class="mobile-nav-link">
+      <span>🔥 Viral Accounts</span>
+      <span class="badge-tag">2,080+</span>
+    </a>
+    <a href="extractor.html" class="mobile-nav-link active">
+      <span>⚡ AI Prompt Extractor</span>
+      <span class="badge-tag">Pro</span>
+    </a>
+  </div>
+  <div class="mobile-drawer-cta">
+    <a href="login.html" class="btn-primary" style="width:100%; justify-content:center">👤 Student Portal Login</a>
+    <a href="https://wa.me/923000000000?text=Assalam%20o%20alaikum%20Basit%20Academy" target="_blank" rel="noopener" class="btn-ghost" style="width:100%; justify-content:center; gap:8px">💬 WhatsApp Community</a>
+  </div>
+</div>
+
+<!-- Main AI Extractor Studio -->
+<main class="sec" style="padding-top:40px">
+  <div class="wrap" style="max-width:860px">
+    <div class="sec-head" style="text-align:center">
+      <div class="sec-eyebrow">⚡ AI Video Prompt Extractor</div>
+      <h2>Reverse-Engineer Any <span class="grad-text">Viral Video</span></h2>
+      <p class="sec-sub">Paste any TikTok, Instagram Reel, or YouTube Shorts link or describe a visual idea. Our neural engine outputs the exact Midjourney visual prompt, Kling/Runway motion prompt, and viral hook script.</p>
+    </div>
+
+    <!-- Extractor Interactive Studio Card -->
+    <div class="extractor-studio-card">
+      <div class="form-group">
+        <label class="form-label" for="extUrl">Viral Video Link (TikTok / Instagram Reel / Shorts):</label>
+        <input type="url" id="extUrl" class="form-input" placeholder="https://www.tiktok.com/@creator/video/123456789..." />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="extDesc">Or Describe The Video Scene / Concept:</label>
+        <textarea id="extDesc" class="form-textarea" rows="3" placeholder="e.g. A cute 3D miniature fruit character transforming inside a glass container with macro camera and realistic water droplets..."></textarea>
+      </div>
+
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label" for="extApiKey">AI Model API Key (OpenAI / Gemini — Optional):</label>
+        <input type="password" id="extApiKey" class="form-input" placeholder="sk-... or AIzaSy... (Leave empty for Built-in Neural Engine)" autocomplete="off" />
+        <span style="font-size:11px; color:var(--text-dim); display:block; margin-top:4px">Key is stored only in your browser session for maximum security.</span>
+      </div>
+
+      <div style="margin-bottom:20px">
+        <label class="form-label" style="font-size:12px">Quick Style Presets:</label>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">
+          <button type="button" class="preset-btn" data-preset="3d-macro">🍓 3D Macro Fruit Mold</button>
+          <button type="button" class="preset-btn" data-preset="cinematic-dark">🎬 Cinematic Dark 8K</button>
+          <button type="button" class="preset-btn" data-preset="luxury-car">🏎️ Luxury Hypercar</button>
+          <button type="button" class="preset-btn" data-preset="satisfying-asmr">✨ Kinetic ASMR Soap</button>
+          <button type="button" class="preset-btn" data-preset="anime-action">⚡ Cyberpunk Anime</button>
+          <button type="button" class="preset-btn" data-preset="historical-doc">🏺 Historical Roman Documentary</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn-extract" id="btnExtract">
+        <span>⚡ Deconstruct & Generate Master AI Blueprint</span>
+      </button>
+
+      <!-- Extracted Result Output -->
+      <div id="extOutput" style="display:none; margin-top:28px; border-top:1px solid var(--border); padding-top:24px">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:12px">
+          <h3 id="outTitle" style="font-family:var(--font-display); font-size:20px; font-weight:800; color:var(--text-heading)">Extracted Master Production Blueprint</h3>
+          <button type="button" class="btn-primary" id="btnCopyAll" style="padding:8px 18px; font-size:13px">📋 Copy Full Blueprint</button>
+        </div>
+
+        <div style="margin-bottom:18px">
+          <span style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--emerald); display:block; margin-bottom:8px">1. Visual Generation Prompt (Midjourney v6 / Flux):</span>
+          <div class="code-block" id="outImgPrompt"></div>
+        </div>
+
+        <div style="margin-bottom:18px">
+          <span style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--emerald); display:block; margin-bottom:8px">2. AI Video Animation Prompt (Runway Gen-3 / Kling AI):</span>
+          <div class="code-block" id="outVidPrompt"></div>
+        </div>
+
+        <div>
+          <span style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--emerald); display:block; margin-bottom:8px">3. Viral Script, Voiceover & Retention Hook:</span>
+          <div class="code-block" id="outHook"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <div class="logo-avatar-wrap" style="width:32px; height:32px">
+            <img src="img/logo.png?v=3" alt="Basit Academy" onerror="this.src='img/basit.jpg?v=3'">
+          </div>
+          Basit Academy
+        </div>
+        <p class="foot-about">Learn. Create. Grow. Monetize. Facebook and TikTok monetization training for creators in Rajanpur, Pakistan.</p>
+      </div>
+      <div>
+        <div class="foot-h">Direct Hubs</div>
+        <ul class="foot-links">
+          <li><a href="accounts.html">Viral Accounts</a></li>
+          <li><a href="master-prompts.html">Master Prompts</a></li>
+          <li><a href="prompt-book.html">Prompt Book</a></li>
+          <li><a href="extractor.html">AI Video Extractor</a></li>
+          <li><a href="login.html">Student Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-h">Follow & Connect</div>
+        <ul class="foot-links">
+          <li><a href="https://www.facebook.com/profile.php?id=100094701926869" target="_blank" rel="noopener">Facebook Profile</a></li>
+          <li><a href="javascript:void(0)" class="btn-support-modal">WhatsApp Support</a></li>
+        </ul>
+        <p style="font-size:12px; color:var(--text-dim); margin-top:12px; line-height:1.5">
+          Recorded channels, videos, and complete guidelines will be provided directly on this website very soon.
+        </p>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Basit Academy. All rights reserved.</span>
+      <span>Rajanpur, Pakistan · 100% Free Creator Education</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/923000000000?text=Assalam%20o%20alaikum%20Basit%20Academy"
+   class="wa-float"
+   target="_blank"
+   rel="noopener"
+   aria-label="Message us on WhatsApp">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.898 9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/>
+  </svg>
+  <span class="wa-float-text">Direct WhatsApp</span>
+</a>
+
+<!-- MOBILE BOTTOM APP DOCK -->
+<nav class="mobile-bottom-bar" aria-label="Mobile Navigation">
+  <a href="index.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">🏠</span>
+    <span>Home</span>
+  </a>
+  <a href="prompt-book.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">📖</span>
+    <span>Prompts</span>
+  </a>
+  <a href="master-prompts.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">💎</span>
+    <span>Master</span>
+  </a>
+  <a href="accounts.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">🔥</span>
+    <span>Accounts</span>
+  </a>
+  <a href="extractor.html" class="mobile-tab-item active">
+    <span class="mobile-tab-icon">⚡</span>
+    <span>Extract</span>
+  </a>
+  <a href="login.html" class="mobile-tab-item">
+    <span class="mobile-tab-icon">👤</span>
+    <span>Portal</span>
+  </a>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>

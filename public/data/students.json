@@ -1,0 +1,13 @@
+[
+  {
+    "id": "student_1790942739657_5u5ol",
+    "firstName": "Muhammad",
+    "lastName": "Basit",
+    "fullName": "Muhammad Basit",
+    "email": "basit@academy.com",
+    "whatsapp": "+923279497232",
+    "authProvider": "google",
+    "createdAt": "2026-10-02T12:05:39.657Z",
+    "updatedAt": "2026-10-02T12:05:39.658Z"
+  }
+]
