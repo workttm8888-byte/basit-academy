@@ -101,7 +101,7 @@ a {
 /* ==========================================================================
    NAVIGATION (EMERALD GREEN THEME)
    ========================================================================== */
-nav {
+nav:not(.mobile-bottom-bar), .top-nav {
   position: sticky;
   top: 0;
   z-index: 200;
@@ -359,21 +359,23 @@ nav {
 /* Native App-Style Mobile Bottom Navigation Bar */
 .mobile-bottom-bar {
   display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background: #FFFFFF;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid var(--border);
-  padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px)) 8px;
-  z-index: 9999;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-  justify-content: space-around;
-  align-items: center;
+  position: fixed !important;
+  top: auto !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  background: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-top: 1px solid var(--border) !important;
+  border-bottom: none !important;
+  padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px)) 8px !important;
+  z-index: 99999 !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08) !important;
+  justify-content: space-around !important;
+  align-items: center !important;
 }
 
 .mobile-tab-item {
