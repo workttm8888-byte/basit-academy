@@ -1012,6 +1012,32 @@ function openSupportModal() {
   modal.classList.add('active');
 }
 
+function initMobileNav() {
+  const toggleBtn = document.querySelector('.nav-toggle-btn');
+  const drawer = document.getElementById('mobileDrawer');
+  if (toggleBtn && drawer) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleBtn.classList.toggle('active');
+      drawer.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        toggleBtn.classList.remove('active');
+        drawer.classList.remove('open');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (drawer.classList.contains('open') && !drawer.contains(e.target) && !toggleBtn.contains(e.target)) {
+        toggleBtn.classList.remove('active');
+        drawer.classList.remove('open');
+      }
+    });
+  }
+}
+
 function initSupportInterceptors() {
   document.addEventListener('click', (e) => {
     const waLink = e.target.closest('a[href*="wa.me"], .wa-float, .btn-support-modal');
@@ -1028,13 +1054,22 @@ function initSupportInterceptors() {
 async function loadAllDatasets() {
   try {
     initMobileNav();
+  } catch (e) {
+    console.warn('initMobileNav error:', e);
+  }
+
+  try {
     initSupportInterceptors();
     checkAuthState();
+  } catch (e) {
+    console.warn('init support/auth error:', e);
+  }
 
+  try {
     const [accRes, mpRes, pbRes] = await Promise.all([
-      fetch('data/accounts.csv').then(r => r.text()),
-      fetch('data/master-prompts.csv').then(r => r.text()),
-      fetch('data/prompt-book.csv').then(r => r.text())
+      fetch('data/accounts.csv').then(r => r.ok ? r.text() : '').catch(() => ''),
+      fetch('data/master-prompts.csv').then(r => r.ok ? r.text() : '').catch(() => ''),
+      fetch('data/prompt-book.csv').then(r => r.ok ? r.text() : '').catch(() => '')
     ]);
 
     // Parse Accounts: [Platform, Language, Category, Name, Username, Followers, Profile Link]
