@@ -19,8 +19,8 @@ function checkAuthState() {
 function sanitizeBrand(text) {
   if (!text) return '';
   return String(text)
-    .replace(/UMAIR\s+TIKTOK\s+WALA/gi, 'BASIT ACADEMY')
-    .replace(/Umair\s+TikTok\s+Wala/gi, 'Basit Academy')
+    .replace(/UMAIR\s+TIKTOK\s+WALA/gi, 'S B ACADEMY')
+    .replace(/Umair\s+TikTok\s+Wala/gi, 'S B Academy')
     .replace(/umairtiktokwala\.com/gi, 'basitacademy.com')
     .replace(/umairtiktokwala/gi, 'basitacademy')
     .replace(/Umair/gi, 'Basit');
@@ -128,7 +128,7 @@ function downloadPromptFile(title, content) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `${(title || 'Basit_Academy_Prompt').replace(/[^a-zA-Z0-9_-]/g, '_')}_System.txt`;
+  a.download = `${(title || 'SB_Academy_Prompt').replace(/[^a-zA-Z0-9_-]/g, '_')}_System.txt`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -139,7 +139,7 @@ function downloadPromptFile(title, content) {
 async function sharePrompt(title, snippet, pageType, index, btnElement) {
   const cleanTitle = sanitizeBrand(title);
   const shareUrl = `${window.location.origin}${window.location.pathname}?prompt=${index}`;
-  const shareText = `🔥 Check out this AI Master Prompt: "${cleanTitle}" on Basit Academy!\n\n${shareUrl}`;
+  const shareText = `🔥 Check out this AI Master Prompt: "${cleanTitle}" on S B Academy!\n\n${shareUrl}`;
 
   if (navigator.share) {
     try {
@@ -839,7 +839,7 @@ function initExtractorStudio() {
       const imgP = document.getElementById('outImgPrompt').textContent;
       const vidP = document.getElementById('outVidPrompt').textContent;
       const hookP = document.getElementById('outHook').textContent;
-      const fullPackage = `=== BASIT ACADEMY MASTER AI VIDEO BLUEPRINT ===\n\n1. VISUAL GENERATION PROMPT (Midjourney/Flux):\n${imgP}\n\n2. VIDEO ANIMATION PROMPT (Kling/Runway):\n${vidP}\n\n3. VIRAL SCRIPT & HOOK:\n${hookP}\n`;
+      const fullPackage = `=== S B ACADEMY MASTER AI VIDEO BLUEPRINT ===\n\n1. VISUAL GENERATION PROMPT (Midjourney/Flux):\n${imgP}\n\n2. VIDEO ANIMATION PROMPT (Kling/Runway):\n${vidP}\n\n3. VIRAL SCRIPT & HOOK:\n${hookP}\n`;
       copyToClipboard(fullPackage, btnCopyAll);
     };
   }
@@ -967,7 +967,7 @@ function openSupportModal() {
           <div class="support-avatar-wrap">
             <img src="img/basit.jpg?v=3" alt="Basit - Official Support" onerror="this.src='img/logo.png?v=3'">
           </div>
-          <h3>Basit Academy Support <span style="color:#10B981; font-size:17px">✓</span></h3>
+          <h3>S B Academy Support <span style="color:#10B981; font-size:17px">✓</span></h3>
           <p>Official Creator & Student Help Desk</p>
         </div>
 
@@ -987,7 +987,7 @@ function openSupportModal() {
             </div>
           </div>
 
-          <a href="https://wa.me/${SUPPORT_PHONE_RAW}?text=Assalam%20o%20alaikum%20Basit%20Academy%2C%20I%20need%20free%20support%20and%20monetization%20guidance."
+          <a href="https://wa.me/${SUPPORT_PHONE_RAW}?text=Assalam%20o%20alaikum%20SB%20Academy%2C%20I%20need%20free%20support%20and%20monetization%20guidance."
              target="_blank"
              rel="noopener"
              class="btn-chat-whatsapp"
