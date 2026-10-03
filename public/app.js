@@ -193,9 +193,8 @@ function renderTopSliders() {
   if (pbBox && PROMPT_BOOK.length) {
     const items = PROMPT_BOOK.slice(0, 30);
     pbBox.innerHTML = items.map((p, idx) => `
-      <div class="sld-card sld-pb" onclick="openPromptModalByIndex(${idx})" style="cursor:pointer; position:relative">
+      <div class="sld-card sld-pb" onclick="openPromptModalByIndex(${idx})" style="cursor:pointer">
         <div class="sld-img">
-          <div class="prompt-author-tag"><img src="img/logo.png?v=8.0" alt="SB Academy"><span>BASIT ACADEMY</span></div>
           ${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy" onerror="this.outerHTML='${esc(renderThematicImageCover(p.title, p.category)).replace(/'/g, "\\'")}'">` : renderThematicImageCover(p.title, p.category)}
         </div>
         <div class="sld-cap">
@@ -212,9 +211,8 @@ function renderTopSliders() {
     // Show distinct system items
     const items = MASTER_PROMPTS.slice(0, 30);
     mpBox.innerHTML = items.map((p, idx) => `
-      <div class="sld-card sld-mp" onclick="openMasterModalByIndex(${idx})" style="cursor:pointer; border-color:rgba(79, 70, 229, 0.25); position:relative">
+      <div class="sld-card sld-mp" onclick="openMasterModalByIndex(${idx})" style="cursor:pointer; border-color:rgba(79, 70, 229, 0.25)">
         <div class="sld-img" style="background:linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden">
-          <div class="prompt-author-tag"><img src="img/logo.png?v=8.0" alt="SB Academy"><span>BASIT ACADEMY</span></div>
           <div style="font-size:36px; line-height:1; z-index:1; margin-bottom:6px">${getCategoryIcon(p.category)}</div>
           <span style="font-size:11px; font-family:var(--font-mono); color:#93C5FD; font-weight:700; text-transform:uppercase; z-index:1; letter-spacing:0.04em">${esc(p.category || 'System')}</span>
           <span class="free-badge-tag" style="background:var(--grad-primary); border:none; color:#fff; top:8px; right:8px">💎 23-SECTION SYSTEM</span>
@@ -497,9 +495,8 @@ function renderMasterPrompts() {
 
     return `
       <div class="mp-card">
-        <!-- Top Real Photo / Image Header Banner with Author Logo -->
-        <div class="mp-card-media" onclick="openMasterModalByIndex(${globalIdx})" style="cursor:pointer; position:relative">
-          <div class="prompt-author-tag"><img src="img/logo.png?v=8.0" alt="SB Academy"><span>BASIT ACADEMY</span></div>
+        <!-- Top Real Photo / Image Header Banner -->
+        <div class="mp-card-media" onclick="openMasterModalByIndex(${globalIdx})" style="cursor:pointer">
           ${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy" onerror="this.outerHTML='${esc(renderThematicImageCover(p.title, p.category)).replace(/'/g, "\\'")}'">` : renderThematicImageCover(p.title, p.category)}
           <span class="mp-card-badge">${icon} ${esc(p.category || 'System')}</span>
           <span class="mp-card-engine">ChatGPT → Flow</span>
@@ -573,14 +570,6 @@ function openMasterModalByIndex(idx) {
   if (modal && title && body) {
     title.textContent = p.title || 'Master Video Production System';
     body.innerHTML = `
-      <div class="modal-author-bar">
-        <div class="author-avatar"><img src="img/logo.png?v=8.0" alt="SB Academy"></div>
-        <div class="author-info">
-          <b>Basit Academy Official Master Blueprint</b>
-          <span>Verified 23-Section AI Production Architecture</span>
-        </div>
-      </div>
-
       <div style="display:grid; grid-template-columns: ${p.img ? '220px 1fr' : '1fr'}; gap:20px; margin-bottom:20px; align-items:start">
         ${p.img ? `<div style="border-radius:12px; overflow:hidden; border:1px solid var(--border)"><img src="${esc(p.img)}" alt="${esc(p.title)}" style="width:100%; height:auto; display:block" onerror="this.outerHTML='${esc(renderThematicImageCover(p.title, p.category)).replace(/'/g, "\\'")}'"></div>` : ''}
         <div>
@@ -652,8 +641,7 @@ function renderPromptBook(resetLimit = true) {
     const cleanPrompt = sanitizeBrand(p.prompt || '');
     return `
       <div class="pb-card">
-        <div class="pb-card-media" onclick="openPromptModalByIndex(${globalIdx})" style="cursor:pointer; position:relative">
-          <div class="prompt-author-tag"><img src="img/logo.png?v=8.0" alt="SB Academy"><span>BASIT ACADEMY</span></div>
+        <div class="pb-card-media" onclick="openPromptModalByIndex(${globalIdx})" style="cursor:pointer">
           ${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy" onerror="this.outerHTML='${esc(renderThematicImageCover(p.title, p.category)).replace(/'/g, "\\'")}'">` : renderThematicImageCover(p.title, p.category)}
         </div>
         <div class="pb-card-body">
@@ -732,14 +720,6 @@ function openPromptModalByIndex(idx) {
   if (modal && title && body) {
     title.textContent = p.title || 'AI Visual Generation Prompt';
     body.innerHTML = `
-      <div class="modal-author-bar">
-        <div class="author-avatar"><img src="img/logo.png?v=8.0" alt="SB Academy"></div>
-        <div class="author-info">
-          <b>Basit Academy Official Visual Prompt</b>
-          <span>Verified Photorealistic Prompt Blueprint</span>
-        </div>
-      </div>
-
       <div style="display:grid; grid-template-columns: ${p.img ? '240px 1fr' : '1fr'}; gap:20px; margin-bottom:20px; align-items:start">
         ${p.img ? `<div style="border-radius:12px; overflow:hidden; border:1px solid var(--border)"><img src="${esc(p.img)}" alt="${esc(p.title)}" style="width:100%; height:auto; display:block" onerror="this.outerHTML='${esc(renderThematicImageCover(p.title, p.category)).replace(/'/g, "\\'")}'"></div>` : ''}
         <div>
@@ -985,7 +965,7 @@ function openSupportModal() {
       <div class="modal-sheet support-modal-sheet">
         <div class="support-modal-header">
           <div class="support-avatar-wrap">
-            <img src="img/basit.jpg?v=8.0" alt="Basit - Official Support" onerror="this.src='img/logo.png?v=8.0'">
+            <img src="img/basit.jpg?v=9.0" alt="Basit - Official Support" onerror="this.src='img/logo.png?v=9.0'">
           </div>
           <h3>Basit Academy Support <span style="color:#10B981; font-size:17px">✓</span></h3>
           <p>Official Creator & Student Help Desk</p>
