@@ -965,7 +965,7 @@ function openSupportModal() {
       <div class="modal-sheet support-modal-sheet">
         <div class="support-modal-header">
           <div class="support-avatar-wrap">
-            <img src="img/basit.jpg?v=9.0" alt="Basit - Official Support" onerror="this.src='img/logo.png?v=9.0'">
+            <img src="img/basit.jpg?v=10.0" alt="Basit - Official Support" onerror="this.src='img/logo.png?v=10.0'">
           </div>
           <h3>Basit Academy Support <span style="color:#10B981; font-size:17px">✓</span></h3>
           <p>Official Creator & Student Help Desk</p>
