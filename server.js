@@ -35,7 +35,7 @@ app.post('/api/extract-prompt', async (req, res) => {
       if (key.startsWith('AIzaSy')) {
         // Google Gemini API
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
-        const promptSystem = `You are a world-class AI Video Prompt Engineer at S B Academy.
+        const promptSystem = `You are a world-class AI Video Prompt Engineer at Basit Academy.
 Analyze this video concept/link: "${cleanDesc}".
 Return a JSON object ONLY with these exact 4 keys:
 "title": "Short title of the blueprint",
@@ -78,7 +78,7 @@ Return ONLY valid raw JSON with no markdown wrapping.`;
             messages: [
               {
                 role: 'system',
-                content: 'You are an elite AI Video Director at S B Academy. Return a JSON object ONLY with keys: "title", "image_prompt", "video_prompt", "viral_hook".'
+                content: 'You are an elite AI Video Director at Basit Academy. Return a JSON object ONLY with keys: "title", "image_prompt", "video_prompt", "viral_hook".'
               },
               {
                 role: 'user',

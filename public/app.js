@@ -19,8 +19,8 @@ function checkAuthState() {
 function sanitizeBrand(text) {
   if (!text) return '';
   return String(text)
-    .replace(/UMAIR\s+TIKTOK\s+WALA/gi, 'S B ACADEMY')
-    .replace(/Umair\s+TikTok\s+Wala/gi, 'S B Academy')
+    .replace(/UMAIR\s+TIKTOK\s+WALA/gi, 'BASIT ACADEMY')
+    .replace(/Umair\s+TikTok\s+Wala/gi, 'Basit Academy')
     .replace(/umairtiktokwala\.com/gi, 'basitacademy.com')
     .replace(/umairtiktokwala/gi, 'basitacademy')
     .replace(/Umair/gi, 'Basit');
@@ -128,7 +128,7 @@ function downloadPromptFile(title, content) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `${(title || 'SB_Academy_Prompt').replace(/[^a-zA-Z0-9_-]/g, '_')}_System.txt`;
+  a.download = `${(title || 'Basit_Academy_Prompt').replace(/[^a-zA-Z0-9_-]/g, '_')}_System.txt`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -139,7 +139,7 @@ function downloadPromptFile(title, content) {
 async function sharePrompt(title, snippet, pageType, index, btnElement) {
   const cleanTitle = sanitizeBrand(title);
   const shareUrl = `${window.location.origin}${window.location.pathname}?prompt=${index}`;
-  const shareText = `🔥 Check out this AI Master Prompt: "${cleanTitle}" on S B Academy!\n\n${shareUrl}`;
+  const shareText = `🔥 Check out this AI Master Prompt: "${cleanTitle}" on Basit Academy!\n\n${shareUrl}`;
 
   if (navigator.share) {
     try {
@@ -195,7 +195,7 @@ function renderTopSliders() {
     pbBox.innerHTML = items.map((p, idx) => `
       <div class="sld-card sld-pb" onclick="openPromptModalByIndex(${idx})" style="cursor:pointer; position:relative">
         <div class="sld-img">
-          <div class="prompt-author-tag"><img src="img/logo.png?v=5.0" alt="SB Academy"><span>SB ACADEMY</span></div>
+          <div class="prompt-author-tag"><img src="img/logo.png?v=8.0" alt="SB Academy"><span>BASIT ACADEMY</span></div>
           ${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy" onerror="this.outerHTML='${esc(renderThematicImageCover(p.title, p.category)).replace(/'/g, "\\'")}'">` : renderThematicImageCover(p.title, p.category)}
         </div>
         <div class="sld-cap">
@@ -214,7 +214,7 @@ function renderTopSliders() {
     mpBox.innerHTML = items.map((p, idx) => `
       <div class="sld-card sld-mp" onclick="openMasterModalByIndex(${idx})" style="cursor:pointer; border-color:rgba(79, 70, 229, 0.25); position:relative">
         <div class="sld-img" style="background:linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden">
-          <div class="prompt-author-tag"><img src="img/logo.png?v=5.0" alt="SB Academy"><span>SB ACADEMY</span></div>
+          <div class="prompt-author-tag"><img src="img/logo.png?v=8.0" alt="SB Academy"><span>BASIT ACADEMY</span></div>
           <div style="font-size:36px; line-height:1; z-index:1; margin-bottom:6px">${getCategoryIcon(p.category)}</div>
           <span style="font-size:11px; font-family:var(--font-mono); color:#93C5FD; font-weight:700; text-transform:uppercase; z-index:1; letter-spacing:0.04em">${esc(p.category || 'System')}</span>
           <span class="free-badge-tag" style="background:var(--grad-primary); border:none; color:#fff; top:8px; right:8px">💎 23-SECTION SYSTEM</span>
@@ -499,7 +499,7 @@ function renderMasterPrompts() {
       <div class="mp-card">
         <!-- Top Real Photo / Image Header Banner with Author Logo -->
         <div class="mp-card-media" onclick="openMasterModalByIndex(${globalIdx})" style="cursor:pointer; position:relative">
-          <div class="prompt-author-tag"><img src="img/logo.png?v=5.0" alt="SB Academy"><span>SB ACADEMY</span></div>
+          <div class="prompt-author-tag"><img src="img/logo.png?v=8.0" alt="SB Academy"><span>BASIT ACADEMY</span></div>
           ${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy" onerror="this.outerHTML='${esc(renderThematicImageCover(p.title, p.category)).replace(/'/g, "\\'")}'">` : renderThematicImageCover(p.title, p.category)}
           <span class="mp-card-badge">${icon} ${esc(p.category || 'System')}</span>
           <span class="mp-card-engine">ChatGPT → Flow</span>
@@ -574,9 +574,9 @@ function openMasterModalByIndex(idx) {
     title.textContent = p.title || 'Master Video Production System';
     body.innerHTML = `
       <div class="modal-author-bar">
-        <div class="author-avatar"><img src="img/logo.png?v=5.0" alt="SB Academy"></div>
+        <div class="author-avatar"><img src="img/logo.png?v=8.0" alt="SB Academy"></div>
         <div class="author-info">
-          <b>SB Academy Official Master Blueprint</b>
+          <b>Basit Academy Official Master Blueprint</b>
           <span>Verified 23-Section AI Production Architecture</span>
         </div>
       </div>
@@ -653,7 +653,7 @@ function renderPromptBook(resetLimit = true) {
     return `
       <div class="pb-card">
         <div class="pb-card-media" onclick="openPromptModalByIndex(${globalIdx})" style="cursor:pointer; position:relative">
-          <div class="prompt-author-tag"><img src="img/logo.png?v=5.0" alt="SB Academy"><span>SB ACADEMY</span></div>
+          <div class="prompt-author-tag"><img src="img/logo.png?v=8.0" alt="SB Academy"><span>BASIT ACADEMY</span></div>
           ${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy" onerror="this.outerHTML='${esc(renderThematicImageCover(p.title, p.category)).replace(/'/g, "\\'")}'">` : renderThematicImageCover(p.title, p.category)}
         </div>
         <div class="pb-card-body">
@@ -733,9 +733,9 @@ function openPromptModalByIndex(idx) {
     title.textContent = p.title || 'AI Visual Generation Prompt';
     body.innerHTML = `
       <div class="modal-author-bar">
-        <div class="author-avatar"><img src="img/logo.png?v=5.0" alt="SB Academy"></div>
+        <div class="author-avatar"><img src="img/logo.png?v=8.0" alt="SB Academy"></div>
         <div class="author-info">
-          <b>SB Academy Official Visual Prompt</b>
+          <b>Basit Academy Official Visual Prompt</b>
           <span>Verified Photorealistic Prompt Blueprint</span>
         </div>
       </div>
@@ -859,7 +859,7 @@ function initExtractorStudio() {
       const imgP = document.getElementById('outImgPrompt').textContent;
       const vidP = document.getElementById('outVidPrompt').textContent;
       const hookP = document.getElementById('outHook').textContent;
-      const fullPackage = `=== S B ACADEMY MASTER AI VIDEO BLUEPRINT ===\n\n1. VISUAL GENERATION PROMPT (Midjourney/Flux):\n${imgP}\n\n2. VIDEO ANIMATION PROMPT (Kling/Runway):\n${vidP}\n\n3. VIRAL SCRIPT & HOOK:\n${hookP}\n`;
+      const fullPackage = `=== BASIT ACADEMY MASTER AI VIDEO BLUEPRINT ===\n\n1. VISUAL GENERATION PROMPT (Midjourney/Flux):\n${imgP}\n\n2. VIDEO ANIMATION PROMPT (Kling/Runway):\n${vidP}\n\n3. VIRAL SCRIPT & HOOK:\n${hookP}\n`;
       copyToClipboard(fullPackage, btnCopyAll);
     };
   }
@@ -985,9 +985,9 @@ function openSupportModal() {
       <div class="modal-sheet support-modal-sheet">
         <div class="support-modal-header">
           <div class="support-avatar-wrap">
-            <img src="img/basit.jpg?v=3" alt="Basit - Official Support" onerror="this.src='img/logo.png?v=3'">
+            <img src="img/basit.jpg?v=8.0" alt="Basit - Official Support" onerror="this.src='img/logo.png?v=8.0'">
           </div>
-          <h3>S B Academy Support <span style="color:#10B981; font-size:17px">✓</span></h3>
+          <h3>Basit Academy Support <span style="color:#10B981; font-size:17px">✓</span></h3>
           <p>Official Creator & Student Help Desk</p>
         </div>
 
@@ -1007,7 +1007,7 @@ function openSupportModal() {
             </div>
           </div>
 
-          <a href="https://wa.me/${SUPPORT_PHONE_RAW}?text=Assalam%20o%20alaikum%20SB%20Academy%2C%20I%20need%20free%20support%20and%20monetization%20guidance."
+          <a href="https://wa.me/${SUPPORT_PHONE_RAW}?text=Assalam%20o%20alaikum%20Basit%20Academy%2C%20I%20need%20free%20support%20and%20monetization%20guidance."
              target="_blank"
              rel="noopener"
              class="btn-chat-whatsapp"
